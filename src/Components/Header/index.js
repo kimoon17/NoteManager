@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
+    backgroundColor: "#faf75c", //why doesn't it work?
   }
 }));
 
@@ -17,7 +18,7 @@ export default function Header() {
       <AppBar position="static">
         <Toolbar>
           <Typography edge="start" variant="h6">
-            Photos
+            Notes
           </Typography>
         </Toolbar>
       </AppBar>
