@@ -1,0 +1,54 @@
+.note-form-wrapper {
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.50);
+    margin: 100px 300px;
+    display: flex;
+    flex-direction: column;
+}
+.note-form-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #3b3b3b;
+}
+.note-form-top > input {
+    border: none;
+    font-size: 20px !important;
+}
+.note-form-middle {
+    margin-bottom: 20px;
+}
+.note-form-middle > input {
+    border: none;
+    font-size: 15px;
+}
+.note-form-bottom {
+    display: flex;
+    justify-content: space-between;
+    font-size: 15px;
+    color: #3b3b3b;
+}
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #3b3b3b;
+    opacity: 1;
+}
+::-moz-placeholder { /* Firefox 19+ */
+    color: #3b3b3b;
+    opacity: 1;
+}
+:-ms-input-placeholder { /* IE 10+ */
+    color: #3b3b3b;
+    opacity: 1;
+}
+:-moz-placeholder { /* Firefox 18- */
+    color: #3b3b3b;
+    opacity: 1;
+}
+button {
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
