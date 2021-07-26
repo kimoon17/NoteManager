@@ -21,9 +21,9 @@ const Note = (props) => {
 
   return (
     <>
-      <ActiveForm/>
-      <NoteForm/>
+      <NoteForm handleCreateNote={createNote} />
       <NoteList/>
+      <ActiveForm/>
     </>
   )
 }

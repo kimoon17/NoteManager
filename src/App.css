@@ -4,3 +4,11 @@
     justify-content: center;
     align-items: center;
 }
+
+button.ColorPicker-MuiButtonBase-root {
+    margin: 0;
+}
+
+.ColorPicker-MuiFormControl-root.ColorPicker-MuiTextField-root {
+    display: none;
+}
