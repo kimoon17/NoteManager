@@ -12,3 +12,16 @@ button.ColorPicker-MuiButtonBase-root {
 .ColorPicker-MuiFormControl-root.ColorPicker-MuiTextField-root {
     display: none;
 }
+
+input.MuiInputBase-input {
+    display: none;
+}
+
+.MuiInput-underline:before {
+   content:none !important;
+}
+
+div.MuiInputAdornment-positionEnd {
+    margin: 0;
+    height: auto;
+}

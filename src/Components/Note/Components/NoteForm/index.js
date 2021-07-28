@@ -1,7 +1,8 @@
-import AddAlertOutlinedIcon from '@material-ui/icons/AddAlertOutlined'
-import PersonAddOutlinedIcon from '@material-ui/icons/PersonAddOutlined'
-import ColorLensOutlinedIcon from '@material-ui/icons/ColorLensOutlined'
+import Button from '@material-ui/core/Button'
 import { ColorPicker } from 'material-ui-color';
+import DateFnsUtils from '@date-io/date-fns'
+import {KeyboardDateTimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
+
 import React, {useEffect, useRef, useState} from "react"
 import {makeStyles} from "@material-ui/core/styles"
 
@@ -63,14 +64,16 @@ const useStyles = makeStyles(() => ({
     border: 'none',
     backgroundColor: 'transparent',
     fontWeight: 'bold',
-    letterSpacing: '0.5px'
+    letterSpacing: '0.5px',
+    cursor: 'pointer',
   }
 }))
 
-const NoteForm = ({createNote}) => {
+const NoteForm = ({handleCreateNote}) => {
   const classes = useStyles()
   const inputEl = useRef(null)
-  const [form, setForm] = useState({title: '', description: '', time: Date(), color: '#fff', alert: null})
+  const defaultForm = {title: '', description: '', time: Date(), color: '#fff', alert: null}
+  const [form, setForm] = useState(defaultForm)
 
   useEffect(() => {
     inputEl.current.focus()
@@ -84,7 +87,7 @@ const NoteForm = ({createNote}) => {
           className={classes.input}
           type="text"
           placeholder="Title"
-          defaultValue={form.title}
+          value={form.title}
           onChange={(e) => {
             setForm(prevForm => ({...prevForm, title: e.target.value}))
           }}
@@ -96,7 +99,7 @@ const NoteForm = ({createNote}) => {
           className={classes.textarea}
           type="text"
           placeholder="Take a note..."
-          defaultValue={form.description}
+          value={form.description}
           onChange={(e) => {
             setForm(prevForm => ({...prevForm, description: e.target.value}))
           }}
@@ -105,8 +108,18 @@ const NoteForm = ({createNote}) => {
 
       <div className={classes.bottom}>
         <div className={classes.icons}>
-          <AddAlertOutlinedIcon/>
-          <PersonAddOutlinedIcon/>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDateTimePicker
+              ampm={false}
+              value={new Date("2022-01-01T00:00:00.000Z")}
+              onChange={(e) => console.log(e)}
+              onError={console.log}
+              disablePast
+              format="yyyy/MM/dd HH:mm"
+            />
+          </MuiPickersUtilsProvider>
+          {/*<PersonAddOutlinedIcon/>*/}
+
           <span className={classes.icon}>
             <ColorPicker
               defaultValue={form.color}
@@ -122,7 +135,15 @@ const NoteForm = ({createNote}) => {
           {/*<ArchiveOutlinedIcon/>*/}
           {/*<MoreVertOutlinedIcon/>*/}
         </div>
-        <button className={classes.button}>Close</button>
+        <Button
+          className={classes.button}
+          onClick={() => {
+            handleCreateNote(form)
+            setForm(() => ({...defaultForm}))
+          }}
+          disabled={form.title === ''}
+        >Create
+        </Button>
       </div>
     </div>
   )

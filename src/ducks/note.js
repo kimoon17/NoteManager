@@ -56,10 +56,14 @@ export const setActiveNote = (nodeId) => ({
   payload: nodeId
 })
 
-export const createNote = (newNode) => ({
-  type: CREATE_NOTE,
-  payload: newNode
-})
+export const createNote = (newNode) => (dispatch, getState) => {
+  const noteList = noteListSelector(getState()) || []
+
+  dispatch({
+    type: CREATE_NOTE,
+    payload: [...noteList, {...newNode, id: noteList.length + 1}]
+  })
+}
 
 export const fetchNoteList = () => ({
   type: FETCH_NOTE_LIST,

@@ -3,7 +3,6 @@ import {connect} from "react-redux"
 import {
   noteListSelector,
   activeNoteSelector,
-
   setActiveNote,
   createNote,
   fetchNoteList,
@@ -22,7 +21,7 @@ const Note = (props) => {
   return (
     <>
       <NoteForm handleCreateNote={createNote} />
-      <NoteList/>
+      <NoteList list={noteList} setNote={setActiveNote}/>
       <ActiveForm/>
     </>
   )
