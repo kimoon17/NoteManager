@@ -1,4 +1,9 @@
 import {makeStyles} from "@material-ui/core/styles"
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import Paper from '@material-ui/core/Paper';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -8,29 +13,37 @@ const useStyles = makeStyles(() => ({
     width: '100%'
   },
   item: {
-    height: '300px',
-    width: '170px',
-    border: '1px solid #888'
+    maxHeight: '300px',
+    width: '270px',
   },
-  title: {
-
-  },
-  description: {
-
-  }
 
 }))
 
+const Note = ({note, setNote}) => {
+  const classes = useStyles()
+  return (
+    <Paper >
+      <Card className={classes.item} style={{backgroundColor: note.color}}>
+        <CardActionArea onClick={() => setNote(note.id)}>
+          <CardContent>
+            <Typography gutterBottom variant="h5" component="h2">
+              {note.title}
+            </Typography>
+            <Typography variant="body2" color="textSecondary" component="p">
+              {note.description}
+            </Typography>
+          </CardContent>
+        </CardActionArea>
+      </Card>
+    </Paper>
+  )
+}
 
-const NoteList = ({list, setNote}) => {
+
+const NoteList = ({list, ...rest}) => {
   const classes = useStyles()
   return <section className={classes.root}>
-    {list && list.map(note => {
-      return <div className={classes.item} key={note.id} onClick={() => setNote(note.id)}>
-        <h3>{note.title}</h3>
-        <span>{note.description}</span>
-      </div>
-    })}
+    {list && list.map(note => <Note key={note.id} note={note} {...rest}/>)}
   </section>
 }
 

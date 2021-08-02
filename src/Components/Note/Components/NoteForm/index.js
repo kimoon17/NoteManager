@@ -2,9 +2,10 @@ import Button from '@material-ui/core/Button'
 import { ColorPicker } from 'material-ui-color';
 import DateFnsUtils from '@date-io/date-fns'
 import {KeyboardDateTimePicker, MuiPickersUtilsProvider} from "@material-ui/pickers";
-
 import React, {useEffect, useRef, useState} from "react"
 import {makeStyles} from "@material-ui/core/styles"
+
+const format = 'yyyy/MM/dd hh:mm a'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -72,7 +73,7 @@ const useStyles = makeStyles(() => ({
 const NoteForm = ({handleCreateNote}) => {
   const classes = useStyles()
   const inputEl = useRef(null)
-  const defaultForm = {title: '', description: '', time: Date(), color: '#fff', alert: null}
+  const defaultForm = {title: '', description: '', time: new Date(), color: '#fff', alert: null}
   const [form, setForm] = useState(defaultForm)
 
   useEffect(() => {
@@ -111,14 +112,14 @@ const NoteForm = ({handleCreateNote}) => {
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDateTimePicker
               ampm={false}
-              value={new Date("2022-01-01T00:00:00.000Z")}
+              value={new Date()}
               onChange={(e) => {
-                setForm(prevForm => ({...prevForm, time: e.value}))
+                setForm(prevForm => ({...prevForm, time: e}))
                 return e.value
               }}
               onError={console.log}
               disablePast
-              format="yyyy/MM/dd HH:mm"
+              format={format}
             />
           </MuiPickersUtilsProvider>
           {/*<PersonAddOutlinedIcon/>*/}
@@ -127,6 +128,8 @@ const NoteForm = ({handleCreateNote}) => {
             <ColorPicker
               defaultValue={form.color}
               value={form.color}
+              disableAlpha
+              palette={{cyan: "cyan", gray: "gray", green: "#00ff00", lime: "lime", orange: "orange", white : "white"}}
               onChange={(e) => {
                 setForm(prevForm => ({...prevForm, color: e.css.backgroundColor}))
                 return e.css.backgroundColor

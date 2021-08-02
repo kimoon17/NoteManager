@@ -13,8 +13,10 @@ export const UPDATE_NOTE = `${prefix}/UPDATE_NOTE`
 export const DELETE_NOTE = `${prefix}/DELETE_NOTE`
 export const READ_NOTE = `${prefix}/READ_NOTE`
 
+const mockNote = [{title: "rrr", color: "#7A1616", description: "rrrrrr", id: 1, alert : new Date()}]
+
 export const ReducerRecord = {
-  noteList: null,
+  noteList: mockNote,
   activeNote: null,
 }
 

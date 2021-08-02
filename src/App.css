@@ -18,10 +18,23 @@ input.MuiInputBase-input {
 }
 
 .MuiInput-underline:before {
-   content:none !important;
+    content: none !important;
 }
 
 div.MuiInputAdornment-positionEnd {
     margin: 0;
     height: auto;
+}
+
+div.ColorPicker-MuiPopover-paper,
+div.ColorPicker-makeStyles-container-14 {
+    width: 222px;
+    min-width: 222px;
+    max-width: 222px;
+}
+
+div.ColorPicker-makeStyles-colorboxInputs-8,
+div.ColorPicker-makeStyles-colorboxHsvGradient-15,
+div.ColorPicker-makeStyles-colorboxSliders-16 {
+    display: none;
 }
