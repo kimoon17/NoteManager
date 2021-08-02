@@ -112,7 +112,10 @@ const NoteForm = ({handleCreateNote}) => {
             <KeyboardDateTimePicker
               ampm={false}
               value={new Date("2022-01-01T00:00:00.000Z")}
-              onChange={(e) => console.log(e)}
+              onChange={(e) => {
+                setForm(prevForm => ({...prevForm, time: e.value}))
+                return e.value
+              }}
               onError={console.log}
               disablePast
               format="yyyy/MM/dd HH:mm"
